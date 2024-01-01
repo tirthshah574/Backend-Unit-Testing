@@ -10,7 +10,6 @@
     "test": "jest --watchAll --verbose --coverage"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.11",
     "vite": "^4.4.5"
   }
 }
