@@ -1,4 +1,4 @@
-const { sum, deleteUserById } = require('../utils/helper');
+const { sum, deleteUserById, findUserById } = require('../utils/helper');
 
 describe('Number Operations', () => {
     test('1 plus 1 should be equal to 2', () => {
@@ -140,7 +140,7 @@ describe('Testing imported functions', () => {
             id: 3,
         },
     ];
-    test('Delete by id function should delete', () => {
+    test('Delete by id function should delete a user by their id', () => {
         expect(deleteUserById(users, 2)).toEqual(
             expect.not.arrayContaining([
                 {
@@ -163,5 +163,21 @@ describe('Testing imported functions', () => {
                 id: 3,
             },
         ]);
+
+        expect(deleteUserById(users, 2).length).toBe(2);
+    });
+
+    test('Find by id function should find a user by their id', () => {
+        expect(findUserById(users, 2)).toEqual(
+            expect.objectContaining([
+                {
+                    user: 'B',
+                    age: 14,
+                    id: 2,
+                },
+            ])
+        );
+
+        expect(findUserById(users, 10).length).toBe(0);
     });
 });
