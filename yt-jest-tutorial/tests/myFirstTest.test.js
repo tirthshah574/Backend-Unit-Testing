@@ -22,4 +22,25 @@ describe('Testing other matcher methods', () => {
         expect(number).toBeFalsy();
         expect(number).not.toBeTruthy();
     });
+
+    test('Number Comparison', () => {
+        const a = 1;
+        const b = 2;
+        expect(a + b).toBeGreaterThan(2);
+        expect(a + b).toBeGreaterThanOrEqual(3);
+        expect(a + b).toBeLessThanOrEqual(5);
+        expect(a + b).toBeLessThan(10);
+    });
+
+    test('there should be no I in team', () => {
+        let string = 'team';
+
+        expect(string).not.toMatch(/I/i);
+    });
+
+    test('there is "stop" in Christopher', () => {
+        let string = 'Christopher';
+
+        expect(string).toMatch(/stop/);
+    });
 });
