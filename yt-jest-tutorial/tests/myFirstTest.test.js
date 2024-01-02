@@ -43,4 +43,10 @@ describe('Testing other matcher methods', () => {
 
         expect(string).toMatch(/stop/);
     });
+
+    const shoppingList = ['Milk', 'Trash Bags', 'Paper Towels', 'Iphones'];
+    test("the shopping list doesn't have PS4", () => {
+        expect(shoppingList).not.toContain('PS4');
+        expect(shoppingList).toContain('Milk');
+    });
 });
