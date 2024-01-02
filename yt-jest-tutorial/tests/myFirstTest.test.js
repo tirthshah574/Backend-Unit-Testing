@@ -1,5 +1,20 @@
 const { sum, deleteUserById, findUserById } = require('../utils/helper');
 
+let userdata = [];
+
+beforeAll(() => {
+    userdata = ['john', 'jacob'];
+    console.log('runs once before all tests', userdata);
+});
+
+beforeEach(() => console.log('running before each test'));
+afterEach(() => console.log('running after each test'));
+
+afterAll(() => {
+    userdata = [];
+    console.log('runs once after all tests', userdata);
+});
+
 describe('Number Operations', () => {
     test('1 plus 1 should be equal to 2', () => {
         const a = 1;
