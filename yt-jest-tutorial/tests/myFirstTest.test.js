@@ -50,3 +50,67 @@ describe('Testing other matcher methods', () => {
         expect(shoppingList).toContain('Milk');
     });
 });
+
+// testing primitive and reference type equality
+describe('Testing reference equality', () => {
+    const user = {
+        name: 'Simform',
+    };
+    user['age'] = 45;
+
+    test('Should return a user object with age as 45', () => {
+        expect(user).toEqual({
+            name: 'Simform',
+            age: 45,
+        });
+    });
+
+    test('Should return a user object with name and age key', () => {
+        expect(user).toEqual(
+            expect.objectContaining({
+                name: expect.any(String),
+                age: expect.any(Number),
+            })
+        );
+    });
+
+    // test array equality
+
+    test('Array Equality', () => {
+        const users = ['A', 'B', 'C'];
+
+        users.push('D');
+
+        expect(users).toEqual(['A', 'B', 'C', 'D']);
+        expect(users).toEqual(expect.arrayContaining(['D']));
+
+        const userObjectInArray = [
+            {
+                user: 'A',
+                age: 12,
+            },
+            {
+                user: 'B',
+                age: 14,
+            },
+            {
+                user: 'C',
+                age: 12,
+            },
+        ];
+
+        userObjectInArray.push({
+            user: 'D',
+            age: 57,
+        });
+
+        expect(userObjectInArray).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    user: expect.any(String),
+                    age: expect.any(Number),
+                }),
+            ])
+        );
+    });
+});
