@@ -1,3 +1,5 @@
+const { sum, deleteUserById } = require('../utils/helper');
+
 describe('Number Operations', () => {
     test('1 plus 1 should be equal to 2', () => {
         const a = 1;
@@ -57,6 +59,7 @@ describe('Testing reference equality', () => {
         name: 'Simform',
     };
     user['age'] = 45;
+    id: 1;
 
     test('Should return a user object with age as 45', () => {
         expect(user).toEqual({
@@ -112,5 +115,53 @@ describe('Testing reference equality', () => {
                 }),
             ])
         );
+    });
+});
+
+describe('Testing imported functions', () => {
+    test('Sum function should add 2 numbers', () => {
+        expect(sum(5, 3)).toBe(8);
+    });
+
+    const users = [
+        {
+            user: 'A',
+            age: 12,
+            id: 1,
+        },
+        {
+            user: 'B',
+            age: 14,
+            id: 2,
+        },
+        {
+            user: 'C',
+            age: 12,
+            id: 3,
+        },
+    ];
+    test('Delete by id function should delete', () => {
+        expect(deleteUserById(users, 2)).toEqual(
+            expect.not.arrayContaining([
+                {
+                    user: 'B',
+                    age: 14,
+                    id: 2,
+                },
+            ])
+        );
+
+        expect(deleteUserById(users, 2)).toEqual([
+            {
+                user: 'A',
+                age: 12,
+                id: 1,
+            },
+            {
+                user: 'C',
+                age: 12,
+                id: 3,
+            },
+        ]);
     });
 });
